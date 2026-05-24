@@ -1,0 +1,165 @@
+# Guide officiel — Persistance + Chiffrement LUKS
+# TechNews365 OS Essentials Portable
+
+Ce guide explique comment créer une clé USB TechNews365 Essentials Portable
+avec persistance et chiffrement complet LUKS.
+
+Vous obtiendrez :
+- une clé USB portable,
+- vos données conservées entre les sessions,
+- un chiffrement fort (LUKS),
+- un environnement nomade sécurisé.
+
+---
+
+## 1) Préparer la clé USB
+
+1. Téléchargez l’ISO TechNews365 Essentials Portable.
+2. Flashez-la sur une clé USB avec :
+   - Ventoy (recommandé)
+   - BalenaEtcher
+   - Rufus (mode DD)
+
+La clé contiendra :
+- une partition FAT32 (boot)
+- de l’espace libre pour la persistance
+
+---
+
+## 2) Créer la partition de persistance
+
+Ouvrez un terminal et identifiez votre clé :
+
+lsblk
+Code
+
+
+Supposons que la clé soit `/dev/sdb`.
+
+Créez une partition pour la persistance :
+
+sudo fdisk /dev/sdb
+Code
+
+
+Dans fdisk :
+- n → nouvelle partition
+- p → primaire
+- numéro : 3
+- Enter → début par défaut
+- Enter → fin par défaut
+- w → sauvegarder
+
+---
+
+## 3) Chiffrer la partition avec LUKS
+
+Initialiser LUKS :
+
+sudo cryptsetup luksFormat /dev/sdb3
+Code
+
+
+Ouvrir la partition chiffrée :
+
+sudo cryptsetup open /dev/sdb3 persistence
+Code
+
+
+Créer un système de fichiers ext4 :
+
+sudo mkfs.ext4 /dev/mapper/persistence
+Code
+
+
+Monter la partition :
+
+sudo mkdir /mnt/persistence
+sudo mount /dev/mapper/persistence /mnt/persistence
+Code
+
+
+---
+
+## 4) Activer la persistance
+
+Créer le fichier obligatoire :
+
+echo "/ union" | sudo tee /mnt/persistence/persistence.conf
+Code
+
+
+Ce fichier indique au système d’utiliser la partition comme couche persistante.
+
+---
+
+## 5) Fermer proprement
+
+sudo umount /mnt/persistence
+sudo cryptsetup close persistence
+Code
+
+
+Votre clé USB est maintenant :
+
+- Portable  
+- Persistante  
+- Chiffrée  
+- Sécurisée  
+
+---
+
+## 6) Démarrage
+
+Au boot, choisissez :
+
+**TechNews365 OS (persistent)**
+
+Le système demandera :
+- le mot de passe LUKS,
+- puis chargera votre environnement personnel.
+
+---
+
+## 7) Notes importantes
+
+- Le chiffrement LUKS protège **toutes vos données**.
+- Aucun fichier n’est stocké sur l’ordinateur hôte.
+- La clé peut être utilisée sur n’importe quel PC compatible.
+- En cas de perte de la clé, les données restent inaccessibles.
+
+---
+
+## 8) Dépannage
+
+### La persistance ne fonctionne pas ?
+Vérifiez :
+
+/mnt/persistence/persistence.conf
+Code
+
+Il doit contenir :
+
+/ union
+Code
+
+
+### Le système ne demande pas le mot de passe LUKS ?
+La partition n’a pas été ouverte ou créée correctement.
+
+---
+
+## 9) Version Secure Edition (recommandée)
+
+TechNews365 OS Essentials Secure Edition inclut :
+- persistance chiffrée,
+- scripts automatiques,
+- assistant de configuration,
+- outils de sécurité intégrés.
+
+---
+
+## 10) Licence
+
+Guide sous licence MIT.
+
