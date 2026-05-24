@@ -1,165 +1,63 @@
-# Guide officiel — Persistance + Chiffrement LUKS
-# TechNews365 OS Essentials Portable
+#!/bin/bash
+# TechNews365 OS Essentials Portable - Script PRO de création de persistance chiffrée LUKS
+# Auteur : Jean (TechNews365 OS)
 
-Ce guide explique comment créer une clé USB TechNews365 Essentials Portable
-avec persistance et chiffrement complet LUKS.
+echo "=== TechNews365 OS - Création de la persistance chiffrée LUKS ==="
 
-Vous obtiendrez :
-- une clé USB portable,
-- vos données conservées entre les sessions,
-- un chiffrement fort (LUKS),
-- un environnement nomade sécurisé.
+# Vérification root
+if [ "$EUID" -ne 0 ]; then
+    echo "Erreur : ce script doit être exécuté en root."
+    exit 1
+fi
 
----
-
-## 1) Préparer la clé USB
-
-1. Téléchargez l’ISO TechNews365 Essentials Portable.
-2. Flashez-la sur une clé USB avec :
-   - Ventoy (recommandé)
-   - BalenaEtcher
-   - Rufus (mode DD)
-
-La clé contiendra :
-- une partition FAT32 (boot)
-- de l’espace libre pour la persistance
-
----
-
-## 2) Créer la partition de persistance
-
-Ouvrez un terminal et identifiez votre clé :
-
+# Liste des disques
 lsblk
-Code
+echo ""
+read -p "Entrez le disque USB (ex: /dev/sdb) : " DISK
 
+# Vérification disque
+if [ ! -b "$DISK" ]; then
+    echo "Erreur : disque introuvable."
+    exit 1
+fi
 
-Supposons que la clé soit `/dev/sdb`.
+echo ""
+echo "ATTENTION : La partition 3 de $DISK sera chiffrée."
+read -p "Continuer ? (o/n) : " CONFIRM
 
-Créez une partition pour la persistance :
+if [ "$CONFIRM" != "o" ]; then
+    echo "Opération annulée."
+    exit 1
+fi
 
-sudo fdisk /dev/sdb
-Code
+PART="${DISK}3"
 
+echo "Création de la partition de persistance..."
+parted $DISK mkpart primary ext4 100% 100%
 
-Dans fdisk :
-- n → nouvelle partition
-- p → primaire
-- numéro : 3
-- Enter → début par défaut
-- Enter → fin par défaut
-- w → sauvegarder
+sleep 2
 
----
+echo "Initialisation du chiffrement LUKS..."
+cryptsetup luksFormat --type luks2 --cipher aes-xts-plain64 --key-size 512 $PART
 
-## 3) Chiffrer la partition avec LUKS
+echo "Ouverture de la partition chiffrée..."
+cryptsetup open $PART persistence
 
-Initialiser LUKS :
+echo "Formatage en ext4..."
+mkfs.ext4 /dev/mapper/persistence
 
-sudo cryptsetup luksFormat /dev/sdb3
-Code
+echo "Montage..."
+mkdir -p /mnt/persistence
+mount /dev/mapper/persistence /mnt/persistence
 
+echo "Activation de la persistance..."
+echo "/ union" > /mnt/persistence/persistence.conf
 
-Ouvrir la partition chiffrée :
+echo "Démontage..."
+umount /mnt/persistence
+cryptsetup close persistence
 
-sudo cryptsetup open /dev/sdb3 persistence
-Code
-
-
-Créer un système de fichiers ext4 :
-
-sudo mkfs.ext4 /dev/mapper/persistence
-Code
-
-
-Monter la partition :
-
-sudo mkdir /mnt/persistence
-sudo mount /dev/mapper/persistence /mnt/persistence
-Code
-
-
----
-
-## 4) Activer la persistance
-
-Créer le fichier obligatoire :
-
-echo "/ union" | sudo tee /mnt/persistence/persistence.conf
-Code
-
-
-Ce fichier indique au système d’utiliser la partition comme couche persistante.
-
----
-
-## 5) Fermer proprement
-
-sudo umount /mnt/persistence
-sudo cryptsetup close persistence
-Code
-
-
-Votre clé USB est maintenant :
-
-- Portable  
-- Persistante  
-- Chiffrée  
-- Sécurisée  
-
----
-
-## 6) Démarrage
-
-Au boot, choisissez :
-
-**TechNews365 OS (persistent)**
-
-Le système demandera :
-- le mot de passe LUKS,
-- puis chargera votre environnement personnel.
-
----
-
-## 7) Notes importantes
-
-- Le chiffrement LUKS protège **toutes vos données**.
-- Aucun fichier n’est stocké sur l’ordinateur hôte.
-- La clé peut être utilisée sur n’importe quel PC compatible.
-- En cas de perte de la clé, les données restent inaccessibles.
-
----
-
-## 8) Dépannage
-
-### La persistance ne fonctionne pas ?
-Vérifiez :
-
-/mnt/persistence/persistence.conf
-Code
-
-Il doit contenir :
-
-/ union
-Code
-
-
-### Le système ne demande pas le mot de passe LUKS ?
-La partition n’a pas été ouverte ou créée correctement.
-
----
-
-## 9) Version Secure Edition (recommandée)
-
-TechNews365 OS Essentials Secure Edition inclut :
-- persistance chiffrée,
-- scripts automatiques,
-- assistant de configuration,
-- outils de sécurité intégrés.
-
----
-
-## 10) Licence
-
-Guide sous licence MIT.
+echo ""
+echo "=== Persistance chiffrée LUKS créée avec succès ! ==="
+echo "Votre clé USB TechNews365 Essentials Portable est maintenant sécurisée."
 
