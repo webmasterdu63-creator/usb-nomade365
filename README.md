@@ -1,3 +1,13 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/Base-Linux_Mint_22.3-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Edition-Essentials_Portable-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Persistence-Enabled-orange?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Chiffrement-LUKS2-red?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Architecture-x86__64-lightgrey?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge">
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge">
+</p>
+
 # TechNews365 OS Essentials Secure Edition
 
 TechNews365 OS Essentials Secure Edition est une distribution Linux portable, légère et entièrement chiffrée, conçue pour fonctionner depuis une clé USB ou un SSD externe.  
