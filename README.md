@@ -111,7 +111,8 @@ Libre d’utilisation, modification et redistribution.
 
 ## 👤 Auteur
 
-**Jean — TechNews365 OS**  
+**Jean — TechNews365 OS**
+contact@technews365.fr
 Créateur de distributions Linux personnalisées, outils Admin et solutions IA locales.
 
 
