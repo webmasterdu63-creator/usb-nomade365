@@ -22,7 +22,7 @@ if [ ! -b "$DISK" ]; then
 fi
 
 echo ""
-echo "ATTENTION : La partition 3 de $DISK sera chiffrée."
+echo "ATTENTION : Une nouvelle partition sera créée et chiffrée sur $DISK."
 read -p "Continuer ? (o/n) : " CONFIRM
 
 if [ "$CONFIRM" != "o" ]; then
@@ -30,12 +30,15 @@ if [ "$CONFIRM" != "o" ]; then
     exit 1
 fi
 
-PART="${DISK}3"
-
 echo "Création de la partition de persistance..."
-parted $DISK mkpart primary ext4 100% 100%
+parted -s $DISK mkpart primary ext4 70% 100%
 
 sleep 2
+
+# Détection automatique de la dernière partition
+PART=$(lsblk -ln $DISK | tail -n 1 | awk '{print "/dev/"$1}')
+
+echo "Partition créée : $PART"
 
 echo "Initialisation du chiffrement LUKS..."
 cryptsetup luksFormat --type luks2 --cipher aes-xts-plain64 --key-size 512 $PART
@@ -60,4 +63,5 @@ cryptsetup close persistence
 echo ""
 echo "=== Persistance chiffrée LUKS créée avec succès ! ==="
 echo "Votre clé USB TechNews365 Essentials Portable est maintenant sécurisée."
+
 
