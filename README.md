@@ -9,14 +9,25 @@
 </p>
 # TechNews365 OS Nomade USB Gnome Edition
 
-TechNews365 OS Essentials Secure Edition est une distribution Linux portable, légère et entièrement chiffrée, conçue pour fonctionner depuis une clé USB ou un SSD externe.  
-Basée sur Linux Mint 22.3, elle offre un environnement nomade **sécurisé**, **persistant** et **rapide**, idéal pour les techniciens, administrateurs, étudiants et utilisateurs mobiles.
+TechNews365 OS Nomade USB – GNOME 50 Edition  
+TechNews365 OS Essentials Secure Edition est une distribution Linux portable, optimisée et entièrement brandée TN365, conçue pour fonctionner depuis une clé USB ou un SSD externe.
 
-Cette édition met l’accent sur :
-- la sécurité,
-- la confidentialité,
-- la portabilité,
-- la simplicité d’utilisation.
+Basée sur Linux Mint 22.3, elle intègre :
+- GNOME 50 moderne et stable,
+- Kernel 7.0 optimisé,
+- un environnement rapide, cohérent et épuré,
+- une persistance sécurisée (LUKS2),
+- un branding complet TN365.
+
+Cette édition inclut les outils essentiels :
+- OnlyOffice (suite bureautique),
+- Thunderbird (messagerie),
+- Firefox (navigateur),
+- Stacer (optimisation système),
+- Murmure (IA locale).
+
+Elle offre une expérience nomade professionnelle, sécurisée et prête à l’emploi pour techniciens, administrateurs, étudiants et utilisateurs mobiles.
+
 
 ---
 
@@ -36,21 +47,45 @@ La Secure Edition intègre :
 - **Isolation des données**  
   Rien n’est stocké sur l’ordinateur hôte.
 
----
+    Basée sur GNOME 50 TN365
 
-## 🚀 Fonctionnalités principales
+    Kernel 7.0 optimisé pour systèmes nomades
 
-- Basée sur **Linux Mint 22.3** (Ubuntu 24.04 LTS)
-- Environnement **Cinnamon optimisé**
-- **Persistance + chiffrement LUKS**
-- Système **léger, rapide et stable**
-- Compatible USB 3.0 / 3.1 / SSD externe
-- Support AppImage / Flatpak
-- Branding complet **TechNews365 OS**
-- Outils essentiels préinstallés
-- Mode portable prêt à l’emploi
+    Environnement GNOME 50 fluide, moderne et épuré
 
----
+    Persistance + chiffrement LUKS2
+
+    Système léger, rapide et stable
+
+    Compatible USB 3.0 / 3.1 / SSD externe
+
+    Support AppImage / Flatpak
+
+    Branding complet TechNews365 OS
+
+    Outils essentiels préinstallés :
+
+        OnlyOffice
+
+        Thunderbird
+
+        Firefox
+
+        Stacer
+
+        Murmure (IA locale)
+
+    Mode portable prêt à l’emploi
+
+Tu peux approfondir avec :
+
+    GNOME 50
+
+    Kernel 7.0
+
+    Branding TN365
+
+    Apps TN365
 
 ## 🧰 Contenu inclus
 
