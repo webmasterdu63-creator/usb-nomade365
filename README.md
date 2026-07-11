@@ -114,6 +114,7 @@ Libre d’utilisation, modification et redistribution.
 **Jean — TechNews365 OS**
 contact@technews365.fr
 Créateur de distributions Linux personnalisées, outils Admin et solutions IA locales.
+
 ![USB Nomade TN365](https://raw.githubusercontent.com/webmasterdu63-creator/usb-nomade365/main/usb.jpeg)
 
 
