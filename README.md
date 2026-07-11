@@ -7,7 +7,6 @@
   <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge">
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge">
 </p>
-![USB Nomade TN365](https://raw.githubusercontent.com/webmasterdu63-creator/usb-nomade365/main/assets/usb.jpeg)
 # TechNews365 OS Nomade USB Gnome Edition
 
 TechNews365 OS Essentials Secure Edition est une distribution Linux portable, légère et entièrement chiffrée, conçue pour fonctionner depuis une clé USB ou un SSD externe.  
@@ -115,5 +114,7 @@ Libre d’utilisation, modification et redistribution.
 **Jean — TechNews365 OS**
 contact@technews365.fr
 Créateur de distributions Linux personnalisées, outils Admin et solutions IA locales.
+![USB Nomade TN365](https://raw.githubusercontent.com/webmasterdu63-creator/usb-nomade365/main/usb.jpeg)
+
 
 
