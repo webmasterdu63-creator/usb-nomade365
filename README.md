@@ -7,11 +7,14 @@
   <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge">
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge">
 </p>
-# TechNews365 OS Nomade USB Gnome Edition
+# TechNews365 OS Nomade USB 365
 
 TechNews365 OS Nomade USB est une distribution Linux portable, optimisée et entièrement brandée TN365, conçue pour fonctionner depuis une clé USB ou un SSD externe.
+
+
 SourceForge Projet Officiel:
 https://sourceforge.net/projects/usb-nomade/
+
 
 - Base Ubuntu 26.O4 LTS Raccoon GNOME 50 moderne Optimisé TN 365 et stable,
 - Kernel 7.0 , 2026
