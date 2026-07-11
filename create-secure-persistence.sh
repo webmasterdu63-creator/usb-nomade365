@@ -1,3 +1,4 @@
+
 #!/bin/bash
 # TechNews365 OS Essentials Portable - Script de création de persistance chiffrée LUKS
 # Auteur : Jean (TechNews365 OS)
@@ -16,7 +17,7 @@ echo ""
 read -p "Entrez le chemin du disque USB (ex: /dev/sdb) : " DISK
 
 echo ""
-echo "ATTENTION : Toutes les données sur $DISK3 seront chiffrées."
+echo "ATTENTION : Toutes les données sur ${DISK} seront modifiées."
 read -p "Continuer ? (o/n) : " CONFIRM
 
 if [ "$CONFIRM" != "o" ]; then
@@ -24,18 +25,18 @@ if [ "$CONFIRM" != "o" ]; then
     exit 1
 fi
 
-# Création de la partition de persistance
+# Création de la partition de persistance (dernière portion du disque)
 echo "Création de la partition de persistance..."
-parted $DISK mkpart primary ext4 100% 100%
+parted -s $DISK mkpart primary ext4 70% 100%
 
-# Trouver la nouvelle partition
-PART="${DISK}3"
+# Trouver la dernière partition créée
+PART=$(lsblk -ln $DISK | tail -n 1 | awk '{print "/dev/"$1}')
 
 echo "Partition créée : $PART"
 
 # Chiffrement LUKS
 echo "Initialisation du chiffrement LUKS..."
-cryptsetup luksFormat $PART
+cryptsetup luksFormat --type luks2 --cipher aes-xts-plain64 --key-size 512 $PART
 
 echo "Ouverture de la partition chiffrée..."
 cryptsetup open $PART persistence
