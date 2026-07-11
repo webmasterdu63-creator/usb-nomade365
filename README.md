@@ -9,8 +9,7 @@
 </p>
 # TechNews365 OS Nomade USB Gnome Edition
 
-TechNews365 OS Nomade USB – GNOME 50 Edition  
-est une distribution Linux portable, optimisée et entièrement brandée TN365, conçue pour fonctionner depuis une clé USB ou un SSD externe.
+TechNews365 OS Nomade USB est une distribution Linux portable, optimisée et entièrement brandée TN365, conçue pour fonctionner depuis une clé USB ou un SSD externe.
 
 - GNOME 50 moderne Optimisé TN 365 et stable,
 - Kernel 7.0 , 2026
