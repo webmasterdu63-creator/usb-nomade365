@@ -10,11 +10,10 @@
 # TechNews365 OS Nomade USB Gnome Edition
 
 TechNews365 OS Nomade USB – GNOME 50 Edition  
-TechNews365 OS Essentials Secure Edition est une distribution Linux portable, optimisée et entièrement brandée TN365, conçue pour fonctionner depuis une clé USB ou un SSD externe.
+est une distribution Linux portable, optimisée et entièrement brandée TN365, conçue pour fonctionner depuis une clé USB ou un SSD externe.
 
-Basée sur Linux Mint 22.3, elle intègre :
-- GNOME 50 moderne et stable,
-- Kernel 7.0 optimisé,
+- GNOME 50 moderne Optimisé TN 365 et stable,
+- Kernel 7.0 , 2026
 - un environnement rapide, cohérent et épuré,
 - une persistance sécurisée (LUKS2),
 - un branding complet TN365.
